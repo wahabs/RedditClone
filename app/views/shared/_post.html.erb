@@ -1,0 +1,11 @@
+<b><%= post.author_email %> -- <%= post.title %></b>
+<% if post.author == @current_user %>
+ (<%= link_to "Edit Post", edit_post_url(post) %>)
+<% end %>
+
+<% if post.url.length > 0 %>
+  <br> <a href="<%= post.url %>"><%= post.url %></a>
+<% end %>
+
+<br> <%= post.content %>
+<br><br>

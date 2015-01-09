@@ -2,8 +2,8 @@ class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
       t.string :title, null: false
-      t.string :url, null: false
-      t.text :content, null: false
+      t.string :url
+      t.text :content
       t.references :sub, index: true
       t.references :user, index: true
 
