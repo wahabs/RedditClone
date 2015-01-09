@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109185525) do
+ActiveRecord::Schema.define(version: 20150109214310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: true do |t|
+    t.string   "title",      null: false
+    t.string   "url",        null: false
+    t.text     "content",    null: false
+    t.integer  "sub_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "subs", force: true do |t|
+    t.string   "title",       null: false
+    t.string   "description", null: false
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "subs", ["user_id"], name: "index_subs_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false
@@ -24,4 +47,7 @@ ActiveRecord::Schema.define(version: 20150109185525) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "posts", "subs"
+  add_foreign_key "posts", "users"
+  add_foreign_key "subs", "users"
 end

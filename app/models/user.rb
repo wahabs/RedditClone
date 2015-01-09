@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :password_digest, presence: { message: "Password can't be blank" }
   after_initialize :ensure_session_token
+  has_many :subs
+
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
     if user.nil?
       nil
     else
-      (BCrypt::Password.new(password_digest).is_password?(password)) ? user : nil
+      (BCrypt::Password.new(user.password_digest).is_password?(password)) ? user : nil
     end
   end
 
