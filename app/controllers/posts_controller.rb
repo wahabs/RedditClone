@@ -8,10 +8,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # @post.sub(params[:sub_id])
     @post.author = current_user
+    @post.sub_ids = params[:post][:sub_ids]
     if @post.save
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       render :new
     end
@@ -20,23 +20,23 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @subs = Sub.all
-    @sub = Sub.find(params[:sub_id])
   end
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.where(parent_id: nil)
   end
 
   def edit
     @post = Post.find(params[:id])
     @subs = Sub.all
-    @sub = @post.sub
   end
 
   def update
     @post = Post.find(params[:id])
+    @post.sub_ids = params[:post][:sub_ids]
     if @post.update(post_params)
-      redirect_to sub_url(@post.sub)
+      redirect_to post_url(@post)
     else
       render :edit
     end
@@ -44,11 +44,11 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :content, :url, :sub_id)
+      params.require(:post).permit(:title, :content, :url, :sub_ids)
     end
 
     def ensure_author
       post = Post.find(params[:id])
-      redirect_to sub_url(post.sub) if current_user != post.author
+      redirect_to post_url(post) if current_user != post.author
     end
 end

@@ -1,1 +1,8 @@
 <%= render "/shared/post", post: @post %>
+<h2>Comments</h2>
+<%= render partial: 'shared/comment', collection: @comments %>
+<%= link_to 'Comment on this post', new_post_comment_url(@post) %>
+<h2>Posted On</h2>
+<% @post.subs.each do |sub| %>
+  <%= link_to sub.title, sub_url(sub)%>
+<% end %>

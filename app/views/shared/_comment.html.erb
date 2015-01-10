@@ -1,0 +1,3 @@
+<b><%= link_to "Comment by #{comment.author.email}", comment_url(comment) %></b><br>
+<%= comment.content %><br>
+<%= link_to "Back to #{comment.post.title}", post_url(comment.post) %><br><br>

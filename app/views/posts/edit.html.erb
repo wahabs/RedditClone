@@ -4,11 +4,11 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="patch">
   Title: <input type="text" name="post[title]" value="<%= @post.title %>">
-  Sub: <select name="post[sub_id]">
+  <br>Sub:<br>
     <% @subs.each do |sub| %>
-      <option value='<%= sub.id %>'> <%= sub.title %> </option>
+      <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"
+        <%= 'checked' if @post.sub_ids.include?(sub.id) %>> <%= sub.title %><br>
     <% end %>
-  </select>
   Content: <textarea name="post[content]"><%= @post.content %></textarea>
   Link: <input type="text" name="post[url]" value="<%= @post.url %>">
   <input type="submit" value="Update Post">

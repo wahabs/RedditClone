@@ -3,11 +3,10 @@
 <form action="<%= posts_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   Title: <input type="text" name="post[title]" value="<%= @post.title %>">
-  Sub: <select name="post[sub_id]">
-    <% @subs.each do |sub| %>
-      <option value='<%= sub.id %>'> <%= sub.title %> </option>
-    <% end %>
-  </select>
+  <br>Sub:<br>
+  <% @subs.each do |sub| %>
+  <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"> <%= sub.title %><br>
+  <% end %>
   Content: <textarea name="post[content]"><%= @post.content %></textarea>
   Link: <input type="text" name="post[url]" value="<%= @post.url %>">
   <input type="submit" value="Add Post">
