@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       log_in! @user
       redirect_to user_url
     else
+      @user = User.new(email: params[:user][:email])
       render :new
     end
   end

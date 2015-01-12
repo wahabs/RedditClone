@@ -1,7 +1,8 @@
-<h1><%= link_to "#{post.title}", post_url(post) %></h1>
-<%= post.author_email %>
+<b><%= link_to "#{post.title}", post_url(post) %></b>
 <% if post.author == @current_user %>
  (<%= link_to "Edit Post", edit_post_url(post) %>)
+ <% else %>
+ <%= post.author_email %>
 <% end %>
 
 <% if post.url.length > 0 %>

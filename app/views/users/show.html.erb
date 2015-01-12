@@ -1,1 +1,7 @@
-<h3><%= @user.email %> logged in</h3>
+<h1><%= @user.email %></h1>
+
+<h2>Your Posts</h2>
+<%= render partial: "shared/post", collection: @user.posts %>
+
+<h2>Your Comments</h2>
+<%= render partial: "shared/comment", collection: @user.comments %>

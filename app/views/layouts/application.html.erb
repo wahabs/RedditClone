@@ -11,7 +11,7 @@
 <%= link_to "All Subs", subs_url %><br><br>
 <% if current_user %>
   <%= link_to "Profile", user_url %>
-  <%= button_to "Logout", session_url, method: :delete %>
+  <br><br><%= button_to "Logout", session_url, method: :delete %>
 <% else %>
   <%= link_to "Login", new_session_url %> or <%= link_to "Sign Up", new_user_url %>
 <% end %>

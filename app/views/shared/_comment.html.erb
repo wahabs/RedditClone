@@ -1,3 +1,7 @@
-<b><%= link_to "Comment by #{comment.author.email}", comment_url(comment) %></b><br>
+<% if current_user == comment.author %>
+  <b><%= link_to "Comment on #{comment.post.title}", comment_url(comment) %></b><br>
+<% else %>
+  <b><%= link_to "Comment by #{comment.author.email}", comment_url(comment) %></b><br>
+<% end %>
+
 <%= comment.content %><br>
-<%= link_to "Back to #{comment.post.title}", post_url(comment.post) %><br><br>

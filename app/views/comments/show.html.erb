@@ -1,1 +1,10 @@
 <%= render partial: "shared/comment", locals: { comment: @comment } %>
+
+<form action="/comments" method="post">
+  <input type="_hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <textarea name="comment[parent]" rows="8" cols="40"></textarea>
+  <input type="submit" value="Reply to comment">
+</form>
+
+
+<%= link_to "Back to #{@comment.post.title}", post_url(@comment.post) %><br><br>
