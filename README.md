@@ -1,6 +1,6 @@
 # Reddit Clone
 
-A simple clone of the website [Reddit.](http://www.reddit.com/), built with
+A simple clone of the website [Reddit](http://www.reddit.com/), built with
 Ruby on Rails. Users can
 
 * Create accounts
